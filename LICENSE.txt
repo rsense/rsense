@@ -1,0 +1,1 @@
+RSense is distributed under the term of GPLv3+(http://gplv3.fsf.org/).
