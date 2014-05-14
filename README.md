@@ -36,3 +36,11 @@ TODO: Write usage instructions here
 
 RSense is distributed under the term of
 [GPLv3+](http://gplv3.fsf.org/).
+
+## Credits
+
+Rsense was originally designed and implemented by [Matsuyama Tomohiro(@m2ym)](https://github.com/m2ym/), and his hard work is still at the core of rsense today.  All of the algorithms for type-detection were implemented by him, with inspiration from multiple places.  You can read about his original version at [Rsense: A Ruby Development tools for Emacs, Vim and Others](http://cx4a.org/software/rsense/)
+
+In 2013, a major undertaking by @edubkendo to bring it current and improve its usefullness to rubyists was sponsored by the @jruby organization as a Google Summer of Code project.
+
+Special thanks belongs to [Tom Enebo (@enebo)](https://github.com/enebo) who provided excellent mentorship, code, architectural suggestions and more throughout the course of the update.
