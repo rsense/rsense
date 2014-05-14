@@ -1,6 +1,10 @@
-# Rsense
+![rsense](https://cloud.githubusercontent.com/assets/1395968/2978144/51565ee2-dbb5-11e3-9b94-e97a37739d03.png)
 
-TODO: Write a gem description
+# Rsense Can See All
+
+[![Gitter chat](https://badges.gitter.im/rsense/rsense.png)](https://gitter.im/rsense/rsense)
+
+RSense is a tool for doing static analysis of Ruby source code. Rsense is used in conjunction with an editor plugin.
 
 ## Installation
 
