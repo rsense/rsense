@@ -1,3 +1,5 @@
+require "jruby-parser"
+
 module Rsense
   module Server
     class Parser

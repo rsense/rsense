@@ -1,3 +1,50 @@
 #!/usr/bin/env ruby
 
-require 'rsense'
+require 'rsense/client/daemon'
+require "jruby-jars"
+require "pathname"
+
+
+classpath = [
+    JRubyJars.core_jar_path,
+    JRubyJars.stdlib_jar_path
+  ].join(File::PATH_SEPARATOR)
+
+# def gem_home
+#   ENV["GEM_HOME"]
+# end
+
+# def gem_path
+#   [ENV["GEM_PATH"], Gem.path].join(File::PATH_SEPARATOR)
+# end
+
+# def load_path
+#   $LOAD_PATH.join(File::PATH_SEPARATOR)
+# end
+
+# def combine_paths
+#   [gem_home, gem_path, load_path].join(File::PATH_SEPARATOR)
+# end
+
+def rsense_home
+  Pathname.new(__FILE__).expand_path.dirname.parent
+end
+
+def rsense_lib
+  rsense_home.join("lib")
+end
+
+ENV["GEM_PATH"] = Gem.path.join(File::PATH_SEPARATOR)
+java_args = ["-cp", classpath, "org.jruby.Main"]
+jruby_args = [%Q{-I#{rsense_lib}}, %q{bin/_rsense.rb} ] + ARGV
+args = []
+java_args.each do |arg|
+  args << arg
+end
+
+jruby_args.each do |arg|
+  args << arg
+end
+
+exec("java", *args)
+

@@ -9,7 +9,7 @@ module Rsense
 end
 
 class Rsense::Server::Listeners::FindDefinitionEventListener
-  include Rsense::Project::EventListener
+  include Java::org.cx4a.rsense::Project::EventListener
 
   EventType = Rsense::Typing::Graph::EventListener::EventType
   SourceLocation = Rsense::Util::SourceLocation

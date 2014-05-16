@@ -23,9 +23,12 @@ Gem::Specification.new do |spec|
   spec.add_dependency "jruby-jars", "~> 1.7.4"
   spec.add_dependency "jruby-parser", "~> 0.5.2"
   spec.add_dependency "thor", "~> 0.18.1"
+  spec.add_dependency "filetree", "~> 1.0.0"
 
   spec.add_development_dependency 'guard'
   spec.add_development_dependency 'guard-minitest'
+  spec.add_development_dependency 'minitest-colorize'
+  spec.add_development_dependency 'minitest'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
