@@ -10,4 +10,3 @@ module Rsense
 
   end
 end
-puts ARGV

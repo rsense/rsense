@@ -7,4 +7,3 @@ require "rsense/server"
 module Rsense
   # Your code goes here...
 end
-
