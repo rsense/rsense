@@ -1,0 +1,9 @@
+{
+    "command": "code_completion",
+    "project": "~/code/rsense/rsense",
+    "code": "def check(testarg)\n  testarg\nend\ncheck('hello')",
+    "position": {
+        "row": 2,
+        "column": 10
+    }
+}
