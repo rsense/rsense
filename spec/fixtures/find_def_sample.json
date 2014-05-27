@@ -1,0 +1,10 @@
+{
+    "command": "find_definition",
+    "project": "~/code/rsense/rsense",
+    "file": "~/code/rsense/rsense/lib/rsense.rb",
+    "code": "module TestStuff\n  class TestThings\n    def junk\n      'junk'\n    end\n  end\nend\n\nTestStuff::TestThings",
+    "location": {
+        "row": 9,
+        "column": 22
+    }
+}
