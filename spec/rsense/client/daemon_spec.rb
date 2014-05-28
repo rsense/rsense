@@ -88,7 +88,7 @@ describe Rsense::Client::Daemon do
       daemon.stop.must_equal(true)
     end
 
-    it "should delegate stop method to runner" do
+    it "should delegate restart method to runner" do
       daemon = Rsense::Client::Daemon.new(["foo", "bar"])
       daemon.runner = RunnerStub.new(daemon.argslist)
       daemon.restart.must_equal(true)
