@@ -50,6 +50,32 @@ The rsense server will be running at `http://localhost:47367` (or an alternate p
 
 For now, `code_completion` is the only command available, but this will change in the future. Project is the root dir of the user's project. This is needed for finding information about project dependencies.  Code is the text from the file where a completion is being triggered. Location should be obvious.
 
+Rsense will return json that looks like the below:
+
+```json
+{"completions":
+  [
+    {
+      "taint":
+      {
+        "qualified_name":"Object#taint",
+        "base_name":"Object",
+        "kind":"METHOD"
+      }
+    },
+    {
+      "methods":
+      {
+        "qualified_name":"Object#methods",
+        "base_name":"Object",
+        "kind":"METHOD"
+      }
+    }
+  ]
+}
+
+```
+
 ## Contributing
 
 Contributions can only be accepted if they include tests.
