@@ -6,7 +6,7 @@
 
 RSense is a tool for doing static analysis of Ruby source code. Rsense is used in conjunction with an editor plugin.
 
-RSense is currently under heavy development and not ready to use yet.  It would be awesome if you helped get things done.
+RSense is currently under heavy development and ready for testing.  Currently we need to improve the homepage and develop plugins for code_completion.  In the near future we'll also be ready to implement some of the other basic features like `find-definition`. After that, there's plenty to do in the long term.  See the waffle link below to find out where you can pitch in. It would be awesome if you helped get things done.
 
 [![Stories in Ready](https://badge.waffle.io/rsense/rsense.png?label=ready&title=Ready)](https://waffle.io/rsense/rsense)
 
@@ -27,9 +27,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Install one of these plugins:
+
+## Plugin Authors
+
+Rsense plugins are easy to implement.  First your plugin will need to ensure the Rsense server has been started.  It can do this by shelling out to the command line with `rsense start`.  The server can optionally take a port number like this: `rsense server --port 12345`. The default port is `47367`. It also takes a project path, in case the user has a `.rsense` config file there.  For now, this config file is not very useful, but it may become so in the future.
+
+The rsense server will be running at `http://localhost:47367` (or an alternate port if you specify one).  It communicates via json.  You need to send it json like the following example:
+
+```json
+{
+    "command": "code_completion",
+    "project": "/Users/home/test_gem",
+    "file": "/Users/home/test_gem/lib/sample.rb",
+    "code": "require \"sample/version\"\n\nmodule Sample\n  attr_accessor :simple\n\n  def initialize\n    @simple = \"simple\"\n  end\n\n  def another\n    \"another\"\n  end\nend\n\nsample = Sample.new\nsample\n",
+    "location": {
+        "row": 16,
+        "column": 7
+    }
+}
+```
+
+For now, `code_completion` is the only command available, but this will change in the future. Project is the root dir of the user's project. This is needed for finding information about project dependencies.  Code is the text from the file where a completion is being triggered. Location should be obvious.
 
 ## Contributing
+
+Contributions can only be accepted if they include tests.
 
 1. Fork it ( https://github.com/[my-github-username]/rsense/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
