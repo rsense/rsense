@@ -10,7 +10,7 @@ module Rsense
       WORK_PATH = Dir.pwd
       PID_PATH  = '/tmp/exec.pid'
       OUT_PATH = '/tmp/rsense.log'
-      EXEC = "java"
+      EXEC = "/usr/bin/env"
 
       def initialize(args)
         @args = args
@@ -102,7 +102,9 @@ module Rsense
         Dir::chdir(WORK_PATH)
         file_actions = Spoon::FileActions.new
         file_actions.close(1)
-        file_actions.open(1, OUT_PATH, File::WRONLY | File::TRUNC | File::CREAT, 0644)
+        file_actions.open(1, OUT_PATH, File::WRONLY | File::TRUNC | File::CREAT, 0600)
+        file_actions.close(2)
+        file_actions.open(2, OUT_PATH, File::WRONLY | File::TRUNC | File::CREAT, 0600)
         spawn_attr =  Spoon::SpawnAttributes.new
         pid = Spoon.posix_spawn EXEC, file_actions, spawn_attr, @args
         create_pid(pid)

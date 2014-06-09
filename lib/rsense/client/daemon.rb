@@ -54,7 +54,7 @@ module Rsense
       end
 
       def java_args
-        ["java", "-cp", classpath, "org.jruby.Main"]
+        ["env", "java", "-cp", classpath, "org.jruby.Main"]
       end
 
       def jruby_args(cli_args=[])
