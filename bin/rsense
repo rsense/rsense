@@ -8,13 +8,11 @@ daemon = Rsense::Client::Daemon.new(ARGV[1..-1])
 
 if ARGV[0] == 'start'
   daemon.start
-  exit!
 elsif ARGV[0] == 'stop'
   daemon.stop
 elsif ARGV[0] == 'restart'
   daemon.stop
   daemon.start
-  exit!
 else
   STDERR.puts "Usage: rsense <start|stop|restart>"
   exit!
