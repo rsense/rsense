@@ -38,11 +38,11 @@ The rsense server will be running at `http://localhost:47367` (or an alternate p
 ```json
 {
     "command": "code_completion",
-    "project": "/Users/home/test_gem",
-    "file": "/Users/home/test_gem/lib/sample.rb",
-    "code": "require \"sample/version\"\n\nmodule Sample\n  attr_accessor :simple\n\n  def initialize\n    @simple = \"simple\"\n  end\n\n  def another\n    \"another\"\n  end\nend\n\nsample = Sample.new\nsample\n",
+    "project": "spec/fixtures/test_gem",
+    "file": "spec/fixtures/test_gem/lib/sample.rb",
+    "code": "require \"sample/version\"\n\nmodule Sample\n  class Sample\n    attr_accessor :simple\n\n    def initialize\n      @simple = \"simple\"\n    end\n\n    def another\n      \"another\"\n    end\n  end\nend\n\nsample = Sample::Sample.new\nsample",
     "location": {
-        "row": 16,
+        "row": 18,
         "column": 7
     }
 }
@@ -53,23 +53,20 @@ For now, `code_completion` is the only command available, but this will change i
 Rsense will return json that looks like the below:
 
 ```json
-{"completions":
+{
+  "completions":
   [
     {
-      "taint":
-      {
-        "qualified_name":"Object#taint",
-        "base_name":"Object",
-        "kind":"METHOD"
-      }
+      "name":"taint",
+      "qualified_name":"Object#taint",
+      "base_name":"Object",
+      "kind":"METHOD"
     },
     {
-      "methods":
-      {
-        "qualified_name":"Object#methods",
-        "base_name":"Object",
-        "kind":"METHOD"
-      }
+      "name":"methods",
+      "qualified_name":"Object#methods",
+      "base_name":"Object",
+      "kind":"METHOD"
     }
   ]
 }

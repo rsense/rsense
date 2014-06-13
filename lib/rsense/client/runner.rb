@@ -92,7 +92,7 @@ module Rsense
 
       def restart
         if process_exists?
-          STDERR.puts "The process #{EXEC} already running. Restarting the process"
+          STDERR.puts "The process is already running. Restarting the process"
           stop
         end
         start
