@@ -28,6 +28,7 @@ Or install it yourself as:
 ## Usage
 
 Install one of these plugins:
+-  [rsense/atom-rsense](https://atom.io/packages/rsense)
 
 ## Plugin Authors
 
