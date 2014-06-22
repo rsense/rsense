@@ -80,6 +80,8 @@ module Rsense
             Process.kill("TERM", pid)
             Process.wait(pid)
             sleep(0.1)
+            Process.kill("KILL", pid)
+            sleep(0.1)
           end
           puts "here"
         rescue Errno::ESRCH, Errno::ECHILD # no more process to kill
