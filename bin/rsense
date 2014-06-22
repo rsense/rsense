@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rsense/client/daemon'
+require "rsense/version"
 require "jruby-jars"
 require "pathname"
 
@@ -14,6 +15,7 @@ elsif ARGV[0] == 'restart'
   daemon.stop
   daemon.start
 else
+  STDERR.puts "rsense version #{Rsense::VERSION}"
   STDERR.puts "Usage: rsense <start|stop|restart>"
   exit!
 end
