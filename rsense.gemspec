@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rsense-core", "~> 0.6.0"
-  spec.add_dependency "rsense-server", "~> 0.5.6"
+  spec.add_dependency "rsense-core", "~> 0.6.1"
+  spec.add_dependency "rsense-server", "~> 0.5.7"
   spec.add_dependency "spoon", "~> 0.0.4"
   spec.add_dependency "jruby-jars", "~> 1.7.4"
   spec.add_dependency "jruby-parser", "~> 0.5.4"
