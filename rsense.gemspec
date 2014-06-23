@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "spoon", "~> 0.0.4"
   spec.add_dependency "jruby-jars", "~> 1.7.4"
   spec.add_dependency "jruby-parser", "~> 0.5.4"
-  spec.add_dependency "thor", "~> 0.18.1"
+  spec.add_dependency "thor", [">= 0.18.1", "< 0.20"]
   spec.add_dependency "filetree", "~> 1.0.0"
   spec.add_dependency "bundler", "~> 1.6"
 
