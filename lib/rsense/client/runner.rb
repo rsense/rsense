@@ -79,7 +79,7 @@ module Rsense
           while true do
             Process.kill("TERM", pid)
             Process.wait(pid)
-            sleep(0.1)
+            sleep(2.0)
             Process.kill("KILL", pid)
             sleep(0.1)
           end
