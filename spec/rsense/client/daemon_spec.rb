@@ -14,7 +14,8 @@ describe Rsense::Client::Daemon do
 
   it "knows where home is" do
     mhome = @daemon.rsense_home
-    mhome.to_s.must_match(/rsense-server$/)
+    rsense_server_home = Gem::Specification.find_by_name('rsense-server').gem_dir
+    mhome.to_s.must_equal(rsense_server_home)
   end
 
   it "knows where the lib dir is" do
