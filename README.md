@@ -33,9 +33,11 @@ Install one of these plugins:
 -  [rsense/SublimeRsense](https://github.com/rsense/SublimeRsense)
 -  [rsense/rsense.tmbundle](https://github.com/rsense/rsense.tmbundle)
 
+Start RSense via the commandline with `rsense start`.  Rsense can take two options, in case of a port conflict, you can set the port with `rsense start --port 12345`.  It can also take a project path, like `rsense start --path /path/to/my/project`.  When passed a project path, rsense attempts to preload the project's dependencies based on the `Gemfile.lock`.
+
 ## Plugin Authors
 
-Rsense plugins are easy to implement.  First your plugin will need to ensure the Rsense server has been started.  It can do this by shelling out to the command line with `rsense start`.  The server can optionally take a port number like this: `rsense server --port 12345`. The default port is `47367`. It also takes a project path, in case the user has a `.rsense` config file there.  For now, this config file is not very useful, but it may become so in the future.
+Rsense plugins are easy to implement.  First your plugin will need to ensure the Rsense server has been started.  It can do this by shelling out to the command line with `rsense start`.  The server can optionally take a port number like this: `rsense start --port 12345`. The default port is `47367`. It also takes a project path, in case the user has a `.rsense` config file there.  For now, this config file is not very useful, but it may become so in the future.
 
 The rsense server will be running at `http://localhost:47367` (or an alternate port if you specify one).  It communicates via json.  You need to send it json like the following example, via POST:
 
