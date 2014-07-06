@@ -12,6 +12,7 @@ RSense is currently under heavy development and ready for testing.  Currently we
 
 
 ## Installation
+RSense is installed via RubyGems. It works well installed via Bundler as that gives it access to your application's LOAD_PATH very easily, and ensures it's installed into the same Ruby as your other dependencies if you happen to be using a version management tool like `rbenv`.  Otherwise, be sure to install it with the proper version of Ruby.
 
 Add this line to your application's Gemfile:
 
@@ -29,18 +30,20 @@ Or install it yourself as:
 
 Install one of these plugins:
 -  [rsense/atom-rsense](https://atom.io/packages/rsense)
+-  [rsense/SublimeRsense](https://github.com/rsense/SublimeRsense)
+-  [rsense/rsense.tmbundle](https://github.com/rsense/rsense.tmbundle)
 
 ## Plugin Authors
 
 Rsense plugins are easy to implement.  First your plugin will need to ensure the Rsense server has been started.  It can do this by shelling out to the command line with `rsense start`.  The server can optionally take a port number like this: `rsense server --port 12345`. The default port is `47367`. It also takes a project path, in case the user has a `.rsense` config file there.  For now, this config file is not very useful, but it may become so in the future.
 
-The rsense server will be running at `http://localhost:47367` (or an alternate port if you specify one).  It communicates via json.  You need to send it json like the following example:
+The rsense server will be running at `http://localhost:47367` (or an alternate port if you specify one).  It communicates via json.  You need to send it json like the following example, via POST:
 
 ```json
 {
     "command": "code_completion",
-    "project": "spec/fixtures/test_gem",
-    "file": "spec/fixtures/test_gem/lib/sample.rb",
+    "project": "/home/myprojects/test_gem",
+    "file": "/home/myprojects/test_gem/lib/sample.rb",
     "code": "require \"sample/version\"\n\nmodule Sample\n  class Sample\n    attr_accessor :simple\n\n    def initialize\n      @simple = \"simple\"\n    end\n\n    def another\n      \"another\"\n    end\n  end\nend\n\nsample = Sample::Sample.new\nsample",
     "location": {
         "row": 18,
@@ -49,7 +52,13 @@ The rsense server will be running at `http://localhost:47367` (or an alternate p
 }
 ```
 
-For now, `code_completion` is the only command available, but this will change in the future. Project is the root dir of the user's project. This is needed for finding information about project dependencies.  Code is the text from the file where a completion is being triggered. Location should be obvious.
+For now, `code_completion` is the only command available, but this will change in the future. 
+
+Use absolute paths for both paths as there's no way to be sure where the user may have rsense installed. Project is the root dir of the user's project. This is needed for finding information about project dependencies. Rsense uses project path to get information from RubyGems and Bundler about your dependencies so it can do accurate type inference. RSense uses the filepath for tracking SourcePosition. This is only slightly important for code-completion and most completions will work without it. HOWEVER, when we begin looking into source-rewriting for refactorings, or even exposing the already written Find Definition tool, it will be necessary. 
+
+`code` is the text from the file where a completion is being triggered. We send it with the command because it is unlikely the user will have saved the file.  Many tools which act on source code resolve this by writing to a tempfile, but I find this to be a hacky, and unnecessary solution. Rsense takes the code directly.
+
+Location is tricky. Editor's measure cursor position in different ways. Rsense expects 1-based numbers here, with the first row, and first column being (1, 1). With each editor I've worked with, I've found it necessary to play around until it works. But you can examine `spec/fixtures/test_gem/lib/sample.rb` for the file being from which the above json was generated for use as a test-case.
 
 Rsense will return json that looks like the below:
 
@@ -72,6 +81,19 @@ Rsense will return json that looks like the below:
   ]
 }
 
+```
+Rsense now comes with a secondary executable- `_rsense_commandline.rb`. If forming json and sending commands via http is difficult from your editor, `_rsense_commandline.rb` can do it for you.  Just shell out to it with the needed info, like this:
+
+```bash
+_rsense_commandline.rb  --project=/home/projects/myproject  --filepath=/home/projects/myproject/lib/test_case.rb  --text='class TestCase
+  def junk
+    "Hello"
+  end
+end
+
+tt = TestCase.new
+tt.
+'  --location='7:3'
 ```
 
 ## Contributing
