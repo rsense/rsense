@@ -35,6 +35,12 @@ Install one of these plugins:
 
 Start RSense via the commandline with `rsense start`.  Rsense can take two options, in case of a port conflict, you can set the port with `rsense start --port 12345`.  It can also take a project path, like `rsense start --path /path/to/my/project`.  When passed a project path, rsense attempts to preload the project's dependencies based on the `Gemfile.lock`.
 
+## Troubleshooting
+
+If you have trouble getting started with RSense, try [rsense/sample](https://github.com/rsense/sample) . It's a known working example, with startup instructions, that should let you test RSense and figure out if it is something you were doing, or more likely, an rsense bug.
+
+Otherwise, come by our gitter chat: [![Gitter chat](https://badges.gitter.im/rsense/rsense.png)](https://gitter.im/rsense/rsense) or create an issue.
+
 ## Plugin Authors
 
 Rsense plugins are easy to implement.  First your plugin will need to ensure the Rsense server has been started.  It can do this by shelling out to the command line with `rsense start`.  The server can optionally take a port number like this: `rsense start --port 12345`. The default port is `47367`. It also takes a project path, in case the user has a `.rsense` config file there.  For now, this config file is not very useful, but it may become so in the future.
