@@ -37,6 +37,12 @@ Start RSense via the commandline with `rsense start`.  Rsense can take two optio
 
 ## Troubleshooting
 
+You can view rsense's logs at /tmp/rsense.log. Sometimes I like to tail them, like so:
+
+```bash
+$ less +F /tmp/rsense.log
+```
+
 If you have trouble getting started with RSense, try [rsense/sample](https://github.com/rsense/sample) . It's a known working example, with startup instructions, that should let you test RSense and figure out if it is something you were doing, or more likely, an rsense bug.
 
 Otherwise, come by our gitter chat: [![Gitter chat](https://badges.gitter.im/rsense/rsense.png)](https://gitter.im/rsense/rsense) or create an issue.
