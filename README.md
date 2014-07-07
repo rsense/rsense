@@ -12,7 +12,7 @@ RSense is currently under heavy development and ready for testing.  Currently we
 
 
 ## Installation
-RSense is installed via RubyGems. It works well installed via Bundler as that gives it access to your application's LOAD_PATH very easily, and ensures it's installed into the same Ruby as your other dependencies if you happen to be using a version management tool like `rbenv`.  Otherwise, be sure to install it with the proper version of Ruby.
+RSense is installed via RubyGems. It works well installed via Bundler as that gives it access to your application's LOAD_PATH very easily, and ensures it's installed into the same Ruby as your other dependencies if you happen to be using a version management tool like `rbenv`.  Otherwise, be sure to install it with the proper version of Ruby (whichever ruby you are using for your project).
 
 Add this line to your application's Gemfile:
 
@@ -34,6 +34,18 @@ Install one of these plugins:
 -  [rsense/rsense.tmbundle](https://github.com/rsense/rsense.tmbundle)
 
 Start RSense via the commandline with `rsense start`.  Rsense can take two options, in case of a port conflict, you can set the port with `rsense start --port 12345`.  It can also take a project path, like `rsense start --path /path/to/my/project`.  When passed a project path, rsense attempts to preload the project's dependencies based on the `Gemfile.lock`.
+
+## Troubleshooting
+
+You can view rsense's logs at /tmp/rsense.log. Sometimes I like to tail them, like so:
+
+```bash
+$ less +F /tmp/rsense.log
+```
+
+If you have trouble getting started with RSense, try [rsense/sample](https://github.com/rsense/sample) . It's a known working example, with startup instructions, that should let you test RSense and figure out if it is something you were doing, or more likely, an rsense bug.
+
+Otherwise, come by our gitter chat: [![Gitter chat](https://badges.gitter.im/rsense/rsense.png)](https://gitter.im/rsense/rsense) or create an issue.
 
 ## Plugin Authors
 
