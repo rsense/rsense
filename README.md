@@ -12,7 +12,7 @@ RSense is currently under heavy development and ready for testing.  Currently we
 
 
 ## Installation
-RSense is installed via RubyGems. It works well installed via Bundler as that gives it access to your application's LOAD_PATH very easily, and ensures it's installed into the same Ruby as your other dependencies if you happen to be using a version management tool like `rbenv`.  Otherwise, be sure to install it with the proper version of Ruby.
+RSense is installed via RubyGems. It works well installed via Bundler as that gives it access to your application's LOAD_PATH very easily, and ensures it's installed into the same Ruby as your other dependencies if you happen to be using a version management tool like `rbenv`.  Otherwise, be sure to install it with the proper version of Ruby (whichever ruby you are using for your project).
 
 Add this line to your application's Gemfile:
 
