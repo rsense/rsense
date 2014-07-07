@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rsense-core", "~> 0.6.6"
-  spec.add_dependency "rsense-server", "~> 0.5.12"
+  spec.add_dependency "rsense-server", "~> 0.5.13"
   spec.add_dependency "spoon", "~> 0.0.4"
   spec.add_dependency "jruby-jars", "~> 1.7.4"
   spec.add_dependency "jruby-parser", "~> 0.5.4"
