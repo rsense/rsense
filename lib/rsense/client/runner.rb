@@ -12,8 +12,12 @@ module Rsense
       OUT_PATH = '/tmp/rsense.log'
       EXEC = "/usr/bin/env"
 
-      def initialize(args)
+      def initialize(args={})
         @args = args
+      end
+
+      def self.get_pid
+        new.get_pid
       end
 
       def create_pid(pid)
