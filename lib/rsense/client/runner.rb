@@ -8,7 +8,7 @@ module Rsense
 
       APPNAME = 'rsense'
       WORK_PATH = Dir.pwd
-      PID_PATH  = '/tmp/exec.pid'
+      PID_PATH  = '/tmp/rsense.pid'
       OUT_PATH = '/tmp/rsense.log'
       EXEC = "/usr/bin/env"
 
