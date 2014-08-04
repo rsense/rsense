@@ -49,8 +49,8 @@ module Rsense
       end
 
       def remove_pidfile
-       begin
-         File.unlink(PID_PATH)
+        begin
+          File.unlink(PID_PATH)
         rescue => e
           STDERR.puts "ERROR: Unable to unlink #{path}:\n\t" +
             "(#{e.class}) #{e.message}"
