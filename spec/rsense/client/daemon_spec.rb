@@ -74,7 +74,7 @@ describe Rsense::Client::Daemon do
 
     it "should initialize a runner" do
       daemon = Rsense::Client::Daemon.new(["foo", "bar"])
-      daemon.runner.class::PID_PATH.must_match(/tmp\/rsense\.pid/)
+      daemon.runner.class::PID_PATH.must_match(Rsense::Client::Runner::PID_PATH)
     end
 
     it "should delegate start method to runner" do

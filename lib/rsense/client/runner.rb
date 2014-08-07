@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'rubygems'
 require 'spoon'
 
@@ -8,11 +9,13 @@ module Rsense
 
       APPNAME = 'rsense'
       WORK_PATH = Dir.pwd
-      PID_PATH  = '/tmp/rsense.pid'
-      OUT_PATH = '/tmp/rsense.log'
+      # TODO: Make this configurable w/out ENV variables
+      PID_PATH  = ENV['RSENSE_PID'] || '/tmp'
+      OUT_PATH = ENV['RSENSE_LOG'] || '/tmp'
       EXEC = "/usr/bin/env"
 
       def initialize(args={})
+        ensure_paths_exist(PID_PATH, OUT_PATH)
         @args = args
       end
 
@@ -22,11 +25,11 @@ module Rsense
 
       def create_pid(pid)
         begin
-          open(PID_PATH, 'w') do |f|
+          open(pid_path, 'w') do |f|
             f.puts pid
           end
         rescue => e
-          STDERR.puts "Error: Unable to open #{PID_PATH} for writing:\n\t" +
+          STDERR.puts "Error: Unable to open #{pid_path} for writing:\n\t" +
               "(#{e.class}) #{e.message}"
           exit!
         end
@@ -35,12 +38,12 @@ module Rsense
       def get_pid
         pid = false
         begin
-          open(PID_PATH, 'r') do |f|
+          open(pid_path, 'r') do |f|
             pid = f.readline
             pid = pid.to_s.gsub(/[^0-9]/,'')
           end
         rescue => e
-          STDERR.puts "Error: Unable to open #{PID_PATH} for reading:\n\t" +
+          STDERR.puts "Error: Unable to open #{pid_path} for reading:\n\t" +
               "(#{e.class}) #{e.message}"
           exit
         end
@@ -49,8 +52,8 @@ module Rsense
       end
 
       def remove_pidfile
-       begin
-         File.unlink(PID_PATH)
+        begin
+          File.unlink(pid_path)
         rescue => e
           STDERR.puts "ERROR: Unable to unlink #{path}:\n\t" +
             "(#{e.class}) #{e.message}"
@@ -108,12 +111,26 @@ module Rsense
         Dir::chdir(WORK_PATH)
         file_actions = Spoon::FileActions.new
         file_actions.close(1)
-        file_actions.open(1, OUT_PATH, File::WRONLY | File::TRUNC | File::CREAT, 0600)
+        file_actions.open(1, out_path, File::WRONLY | File::TRUNC | File::CREAT, 0600)
         file_actions.close(2)
-        file_actions.open(2, OUT_PATH, File::WRONLY | File::TRUNC | File::CREAT, 0600)
+        file_actions.open(2, out_path, File::WRONLY | File::TRUNC | File::CREAT, 0600)
         spawn_attr =  Spoon::SpawnAttributes.new
         pid = Spoon.posix_spawn EXEC, file_actions, spawn_attr, @args
         create_pid(pid)
+      end
+
+      def pid_path
+        File.join(PID_PATH, "rsense.pid")
+      end
+
+      def out_path
+        File.join(OUT_PATH, "rsense.log")
+      end
+
+      def ensure_paths_exist(*paths)
+        paths.each do |path|
+          FileUtils.mkdir_p(path) unless File.directory?(path)
+        end
       end
     end
   end
